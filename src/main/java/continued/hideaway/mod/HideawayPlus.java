@@ -10,6 +10,7 @@ import continued.hideaway.mod.feat.lifecycle.Lifecycle;
 import continued.hideaway.mod.feat.lifecycle.Task;
 import continued.hideaway.mod.feat.location.Location;
 import continued.hideaway.mod.feat.shop.Shop;
+import continued.hideaway.mod.feat.statistics.Statistics;
 import continued.hideaway.mod.feat.ui.FriendsListUI;
 import continued.hideaway.mod.feat.wardrobe.Wardrobe;
 import continued.hideaway.mod.util.Constants;
@@ -17,6 +18,7 @@ import continued.hideaway.mod.util.StaticValues;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.ContainerScreen;
@@ -118,6 +120,7 @@ public class HideawayPlus implements ClientModInitializer {
                 .add(Task.of(Wardrobe::tick, 0));
 
         ClientCommands.initCommands();
+        ItemTooltipCallback.EVENT.register(Statistics::init);
     }
 
     public static boolean connected() {
